@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPERATOR · structured strategy · ◊</title>
+<meta name="description" content="Sovereign single-file management-consulting tool. 5-phase engagement engine · MECE issue tree · Porter / 7S / BCG / Value-Driver Tree · 7-strand synthesis · Minto deck output · audit-chained · Konomi-signed. MIT.">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b1a1a'/%3E%3Ctext x='32' y='44' font-size='38' text-anchor='middle' fill='%23e8e8ea'%3E◊%3C/text%3E%3C/svg%3E">
+
+<style>
+:root{
+  --void:#0a0a0f; --void-2:#11131a; --void-3:#1a1a22;
+  --ox:#8b1a1a; --ox-2:#a32424; --ox-dim:#5a1212;
+  --cream:#e8e8ea; --cream-dim:#8a8a92; --cream-deep:#5a5a62;
+  --gold:#b8974a; --green:#22a558; --blue:#2563eb; --red:#dc2626; --purple:#7e3eb3;
+  --line:#1a1a22; --radius:6px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--void);color:var(--cream);font:14px/1.55 -apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 14px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+header .brand{font:700 22px/1 'Times New Roman',serif;letter-spacing:.5px}
+header .brand .ox{color:var(--ox-2)}
+header nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav-btn{background:none;border:1px solid var(--line);color:var(--cream-dim);padding:7px 12px;border-radius:5px;cursor:pointer;font:13px/1 inherit;letter-spacing:.3px}
+.nav-btn:hover{border-color:var(--gold);color:var(--cream)}
+.nav-btn.active{background:var(--ox);color:#fff;border-color:var(--ox)}
+.kcc-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(184,151,74,.16);color:var(--gold);padding:5px 11px;border-radius:999px;font:600 13px/1 ui-monospace,"SF Mono",monospace;border:1px solid rgba(184,151,74,.3);margin-left:6px}
+.kcc-pill #kccBalance{color:var(--cream)}
+.view{display:none}
+.view.active{display:block}
+.tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.dim{color:var(--cream-dim)}
+h1,h2,h3{margin:0 0 8px;font-family:'Times New Roman',Georgia,serif;letter-spacing:-.3px}
+h1{font-size:34px;line-height:1.1}
+h1 .hl{color:var(--ox-2)}
+h2{font-size:22px}
+h3{font-size:16px;font-family:-apple-system,system-ui,sans-serif;font-weight:600;letter-spacing:0}
+.btn{display:inline-block;background:var(--ox);color:#fff;border:0;padding:9px 16px;border-radius:5px;font:600 13px/1 inherit;cursor:pointer;letter-spacing:.3px;text-decoration:none}
+.btn:hover{background:var(--ox-2)}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* HOME */
+.home-hero{padding:42px 28px;background:linear-gradient(180deg,#15171f,var(--void));border:1px solid var(--line);border-radius:10px;text-align:center;margin-bottom:18px}
+.home-hero .lead{color:var(--cream-dim);max-width:640px;margin:14px auto 22px;font-size:16px}
+.cta-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.phase-wheel{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}
+@media (max-width:760px){.phase-wheel{grid-template-columns:1fr 1fr}}
+.phase-card{background:var(--void-2);border:1px solid var(--line);border-radius:8px;padding:18px 16px;text-align:center;cursor:pointer;transition:border-color .12s,transform .12s}
+.phase-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.phase-card .num{font:700 30px/1 'Times New Roman',serif;color:var(--ox-2);margin-bottom:4px}
+.phase-card h4{margin:6px 0 4px;font-size:14px;color:var(--cream)}
+.phase-card .desc{font-size:11px;color:var(--cream-dim);line-height:1.5}
+
+/* ENGAGEMENT */
+.eng-shell{background:var(--void-2);border:1px solid var(--line);border-radius:8px;padding:0;overflow:hidden}
+.eng-tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
+.eng-tab{flex:1;padding:14px 12px;background:none;border:0;border-bottom:2px solid transparent;color:var(--cream-dim);cursor:pointer;font:13px/1.2 inherit;text-align:center;min-width:120px;transition:background .12s}
+.eng-tab:hover{background:var(--void-3)}
+.eng-tab.active{color:var(--cream);background:var(--void-3);border-bottom-color:var(--ox-2)}
+.eng-tab .num{font:700 13px/1 'Times New Roman',serif;color:var(--ox-2);margin-right:4px}
+.eng-body{padding:22px 24px}
+.phase-pane{display:none}
+.phase-pane.active{display:block}
+
+/* FIELDS */
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.field label{font-size:11px;color:var(--cream-dim);letter-spacing:1px;text-transform:uppercase}
+.field input,.field textarea,.field select{background:var(--void);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:var(--cream);font:14px/1.5 inherit;font-family:inherit}
+.field textarea{min-height:96px;resize:vertical}
+.field .help{font-size:11px;color:var(--cream-deep);margin-top:3px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:680px){.field-row{grid-template-columns:1fr}}
+
+/* MECE TREE */
+.tree{padding-left:0}
+.tree-node{background:var(--void-3);border:1px solid var(--line);border-radius:5px;padding:10px 14px;margin-bottom:8px}
+.tree-node .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tree-node input[type=text]{flex:1;background:transparent;border:0;color:var(--cream);font:14px/1.4 inherit;padding:0}
+.tree-node input[type=text]:focus{outline:0;color:var(--cream)}
+.tree-children{margin-left:20px;margin-top:8px;padding-left:14px;border-left:2px solid var(--line)}
+.tree-node .actions{display:flex;gap:4px}
+.tree-node .actions button{background:none;border:0;color:var(--cream-deep);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:3px}
+.tree-node .actions button:hover{background:var(--void-2);color:var(--cream)}
+.tree-node.root{border-left:3px solid var(--ox-2)}
+.tree-node.branch{border-left:3px solid var(--gold)}
+
+/* CLAIMS */
+.claim{background:var(--void-3);border:1px solid var(--line);border-radius:5px;padding:10px 14px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.claim .body{font-size:13px;color:var(--cream)}
+.claim .src{font-size:11px;color:var(--cream-deep);font-family:ui-monospace,monospace;margin-top:4px;word-break:break-all}
+.claim .verdict{display:inline-block;font-size:10px;letter-spacing:1.5px;padding:3px 7px;border-radius:3px;text-transform:uppercase;font-weight:600}
+.claim .verdict.confirmed{background:rgba(34,165,88,.18);color:var(--green)}
+.claim .verdict.refuted{background:rgba(220,38,38,.18);color:var(--red)}
+.claim .verdict.pending{background:rgba(184,151,74,.18);color:var(--gold)}
+
+/* FRAMEWORKS */
+.fw-tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line);overflow-x:auto}
+.fw-tab{padding:9px 14px;background:none;border:0;color:var(--cream-dim);cursor:pointer;font:13px/1 inherit;border-bottom:2px solid transparent}
+.fw-tab.active{color:var(--cream);border-bottom-color:var(--ox-2)}
+.fw-pane{display:none}
+.fw-pane.active{display:block}
+.bcg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.bcg-cell{background:var(--void-3);border:1px solid var(--line);border-radius:5px;padding:12px;min-height:90px}
+.bcg-cell .lbl{font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.bcg-cell textarea{width:100%;background:transparent;border:0;color:var(--cream);font:13px/1.5 inherit;resize:none;min-height:50px}
+.bcg-cell textarea:focus{outline:0}
+
+/* STRANDS · synthesis */
+.strand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.strand{background:var(--void-3);border:1px solid var(--line);border-radius:5px;padding:14px}
+.strand .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.strand .head h4{margin:0;font-size:14px;color:var(--cream)}
+.strand .head .ic{font-size:18px}
+.strand textarea{width:100%;background:var(--void);border:1px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--cream);font:13px/1.5 inherit;min-height:64px;resize:vertical}
+.strand .risk{display:inline-block;font-size:10px;letter-spacing:1.5px;padding:3px 7px;border-radius:3px;text-transform:uppercase;font-weight:600;margin-top:6px}
+.strand .risk.strong{background:rgba(34,165,88,.18);color:var(--green)}
+.strand .risk.moderate{background:rgba(184,151,74,.18);color:var(--gold)}
+.strand .risk.weak,.strand .risk.inadvisable{background:rgba(220,38,38,.18);color:var(--red)}
+
+/* DECK · Minto pyramid */
+.pyramid{display:grid;gap:14px;margin-top:8px}
+.pyr-row{background:var(--void-3);border:1px solid var(--line);border-radius:5px;padding:14px}
+.pyr-row .lbl{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.pyr-row textarea{width:100%;background:var(--void);border:1px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--cream);font:13px/1.5 inherit;min-height:60px;resize:vertical}
+.pyr-row.governing{border-left:3px solid var(--ox-2)}
+.pyr-row.argument{border-left:3px solid var(--gold);margin-left:16px}
+.pyr-row.support{border-left:3px solid var(--cream-deep);margin-left:32px;font-size:13px}
+
+/* HISTORY */
+.eng-list{display:grid;gap:8px}
+.eng-row{background:var(--void-2);border:1px solid var(--line);border-radius:5px;padding:12px 16px;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;cursor:pointer}
+.eng-row:hover{border-color:var(--gold)}
+.eng-row .title{font-weight:600;font-size:14px}
+.eng-row .ts{font-size:11px;color:var(--cream-dim)}
+.eng-row .hash{font-family:ui-monospace,monospace;font-size:10px;color:var(--cream-deep)}
+
+/* SETTINGS */
+.set-card{background:var(--void-2);border:1px solid var(--line);border-radius:6px;padding:18px;margin-bottom:14px}
+.set-card h3{margin:0 0 10px;font-size:15px}
+.set-card .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+.set-card .row:last-child{border-bottom:0}
+.set-card .row .l{color:var(--cream-dim);font-size:12px}
+.set-card .row .v{font-family:ui-monospace,monospace;font-size:11px;color:var(--gold)}
+.kid{font-family:ui-monospace,monospace;font-size:10px;color:var(--cream-deep);word-break:break-all}
+.toggle{position:relative;display:inline-block;width:42px;height:22px}
+.toggle input{opacity:0;width:0;height:0}
+.toggle .slider{position:absolute;cursor:pointer;inset:0;background:var(--void-3);border-radius:11px;transition:.2s;border:1px solid var(--line)}
+.toggle .slider:before{content:"";position:absolute;height:16px;width:16px;left:2px;top:2px;background:var(--cream-dim);border-radius:50%;transition:.2s}
+.toggle input:checked + .slider{background:var(--ox);border-color:var(--ox)}
+.toggle input:checked + .slider:before{transform:translateX(20px);background:#fff}
+
+/* OUTPUT VIEWER */
+.outview{background:var(--void);border:1px solid var(--line);border-radius:5px;padding:14px;font-family:ui-monospace,monospace;font-size:12px;color:var(--cream-dim);white-space:pre-wrap;max-height:380px;overflow:auto;line-height:1.6}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:90;padding:16px}
+.modal.open{display:flex}
+.modal-card{background:var(--void-2);border:1px solid var(--line);border-radius:8px;padding:24px;max-width:560px;width:100%;max-height:92vh;overflow:auto}
+.modal-card h3{margin:0 0 6px;font:700 22px/1.1 'Times New Roman',serif}
+.modal-card p{color:var(--cream-dim);margin:8px 0}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+
+footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--cream-deep);text-align:center;line-height:1.7}
+footer a{color:var(--cream-dim);text-decoration:none;border-bottom:1px dotted var(--line)}
+footer a:hover{color:var(--gold)}
+
+.row-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.section-spacer{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+
+@media print{
+  body{background:#fff;color:#000}
+  header,.eng-tabs,nav,.btn,.row-actions{display:none}
+  .wrap{max-width:none}
+  .strand,.tree-node,.pyr-row,.set-card{background:#fff;border:1px solid #ccc;color:#000}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="brand">◊ <span class="ox">OPERATOR</span> · structured strategy</div>
+  <nav>
+    <button class="nav-btn active" onclick="goView('home')">home</button>
+    <button class="nav-btn" onclick="goView('engagement')">engagement</button>
+    <button class="nav-btn" onclick="goView('history')">history</button>
+    <button class="nav-btn" onclick="goView('settings')">settings</button>
+    <span class="kcc-pill" title="κ-balance · earned per engagement · mesh-broadcast via fall-signal">κ <span id="kccBalance">0</span></span>
+  </nav>
+</header>
+
+<!-- ═══════════ HOME ═══════════ -->
+<section class="view active" id="home">
+  <div class="home-hero">
+    <div class="tag">v1.0 · sovereign single-file · MIT</div>
+    <h1>Structured strategy · <span class="hl">without the £1M deck.</span></h1>
+    <p class="lead">McKinsey's frameworks are public. Porter. 7S. BCG. Minto. The IP is in every business-school textbook. What you pay for is the polish · and the brand on the cover. OPERATOR runs the playbook, sovereignly, with audit-chained provenance on every claim, and outputs a board-ready deck outline you can polish in 30 minutes.</p>
+    <div class="cta-row">
+      <button class="btn" onclick="newEngagement()">Start a new engagement</button>
+      <button class="btn btn-ghost" onclick="loadSample()">Load sample · acquisition diligence</button>
+      <button class="btn btn-ghost" onclick="goView('history')">Past engagements</button>
+    </div>
+  </div>
+
+  <div class="tag" style="text-align:center;margin:14px 0">the 5-phase engine</div>
+  <div class="phase-wheel">
+    <div class="phase-card" onclick="goPhase(0)"><div class="num">1</div><h4>Diagnose</h4><div class="desc">MECE issue tree · hypothesis pyramid · the question before the answer</div></div>
+    <div class="phase-card" onclick="goPhase(1)"><div class="num">2</div><h4>Research</h4><div class="desc">Multi-source evidence · 3-vote adversarial verification · killed-claims list</div></div>
+    <div class="phase-card" onclick="goPhase(2)"><div class="num">3</div><h4>Frame</h4><div class="desc">Porter 5 · McKinsey 7S · BCG matrix · Value-Driver Tree · auto-filled from research</div></div>
+    <div class="phase-card" onclick="goPhase(3)"><div class="num">4</div><h4>Synthesize</h4><div class="desc">7-strand strategy weave · contradiction detection · risk-scored options</div></div>
+    <div class="phase-card" onclick="goPhase(4)"><div class="num">5</div><h4>Deck</h4><div class="desc">Minto pyramid · slide outline · markdown · reveal.js · Konomi-signed envelope</div></div>
+  </div>
+
+  <div class="set-card">
+    <div class="tag">how it differs from a McKinsey engagement</div>
+    <h3 style="margin:4px 0 10px">Same frameworks · half the cost ceiling · cryptographic provenance.</h3>
+    <ul style="color:var(--cream-dim);font-size:13px;line-height:1.7;margin:0;padding-left:18px">
+      <li><strong style="color:var(--cream)">Every claim is hash-chained.</strong> SHA-256 prevHash on every research entry. If a finding gets edited later, the chain breaks. Provenance built in.</li>
+      <li><strong style="color:var(--cream)">Every deliverable is Ed25519-signed.</strong> Against your Konomi keypair. Client verifies "this exact analysis came from you at this exact time, untampered."</li>
+      <li><strong style="color:var(--cream)">Adversarial verification on every claim.</strong> 3-vote pattern. Refuted claims get listed openly · same honesty pattern that won audiences for nhs-reinjection.</li>
+      <li><strong style="color:var(--cream)">MIT open source.</strong> Fork it. Self-host. Brand it your firm's name. Same engine.</li>
+      <li><strong style="color:var(--cream)">Sovereign.</strong> Single HTML file. Works offline. No backend. No leaking client data to a SaaS.</li>
+    </ul>
+  </div>
+
+  <div class="set-card">
+    <div class="tag">for builders</div>
+    <h3>Engine extraction follows the GroundLevel ripple pattern.</h3>
+    <p class="dim" style="font-size:13px;margin:6px 0">v1.0 is the PWA. SDK · Worker REST API · CDN <code style="color:var(--gold)">&lt;script&gt;</code> shim · MCP server · Obsidian plugin all on the roadmap. Same audit chain · same Konomi signature · same fall-signal mesh. See <code style="color:var(--gold)">src/pro-slot.md</code> for the swap contract.</p>
+  </div>
+</section>
+
+<!-- ═══════════ ENGAGEMENT ═══════════ -->
+<section class="view" id="engagement">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+    <div>
+      <div class="tag">engagement</div>
+      <h2 id="engTitleDisp" style="font:700 22px/1.1 'Times New Roman',serif;margin:4px 0 0">Untitled</h2>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-ghost btn-sm" onclick="saveEngagement()">save</button>
+      <button class="btn btn-ghost btn-sm" onclick="newEngagement()">new</button>
+    </div>
+  </div>
+
+  <div class="eng-shell">
+    <div class="eng-tabs">
+      <button class="eng-tab active" onclick="goPhase(0)"><span class="num">1</span> Diagnose</button>
+      <button class="eng-tab" onclick="goPhase(1)"><span class="num">2</span> Research</button>
+      <button class="eng-tab" onclick="goPhase(2)"><span class="num">3</span> Frame</button>
+      <button class="eng-tab" onclick="goPhase(3)"><span class="num">4</span> Synthesize</button>
+      <button class="eng-tab" onclick="goPhase(4)"><span class="num">5</span> Deck</button>
+    </div>
+    <div class="eng-body">
+
+      <!-- ── PHASE 1 · DIAGNOSE ── -->
+      <div class="phase-pane active" id="pane0">
+        <div class="field">
+          <label>Engagement title</label>
+          <input id="engTitle" placeholder="e.g. Should we acquire Competitor X?">
+        </div>
+        <div class="field">
+          <label>The business question (one sentence)</label>
+          <textarea id="engQuestion" placeholder="State the decision the board needs to make · in one sentence · MECE thinking starts here"></textarea>
+        </div>
+        <div class="field">
+          <label>Stakeholders / decision-makers</label>
+          <input id="engStakeholders" placeholder="e.g. CEO, CFO, Board Chair · whoever has to sign off">
+        </div>
+
+        <div class="section-spacer">
+          <div class="tag">MECE issue tree</div>
+          <h3 style="margin:4px 0 8px">Decompose the question · mutually exclusive · collectively exhaustive</h3>
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Root = the question · branches = sub-questions you must answer · leaves = specific data you need.</p>
+          <div id="meceTree"></div>
+          <div class="row-actions">
+            <button class="btn btn-ghost btn-sm" onclick="addBranch()">+ add branch</button>
+            <button class="btn btn-ghost btn-sm" onclick="loadMeceTemplate('acquisition')">template · acquisition</button>
+            <button class="btn btn-ghost btn-sm" onclick="loadMeceTemplate('market-entry')">template · market entry</button>
+            <button class="btn btn-ghost btn-sm" onclick="loadMeceTemplate('cost-transform')">template · cost transformation</button>
+          </div>
+        </div>
+
+        <div class="section-spacer">
+          <div class="tag">hypotheses</div>
+          <h3 style="margin:4px 0 8px">Initial hypotheses (top-down)</h3>
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Start with what you'd recommend if you knew nothing. Research either confirms or kills each hypothesis.</p>
+          <div id="hypoList"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addHypothesis()" style="margin-top:8px">+ add hypothesis</button>
+        </div>
+
+        <div class="row-actions section-spacer">
+          <button class="btn" onclick="goPhase(1)">→ Phase 2 · Research</button>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 · RESEARCH ── -->
+      <div class="phase-pane" id="pane1">
+        <div class="tag">research base · evidence per sub-question</div>
+        <h3 style="margin:4px 0 8px">Build the evidence base.</h3>
+        <p class="dim" style="font-size:13px;margin-bottom:14px">For each sub-question (from your MECE tree), paste research · cite the source · vote each claim as <strong style="color:var(--green)">confirmed</strong>, <strong style="color:var(--red)">refuted</strong>, or <strong style="color:var(--gold)">pending</strong>. Refuted claims get listed in the killed-claims section · same honesty pattern that built credibility for nhs-reinjection.</p>
+
+        <div id="claimsList"></div>
+
+        <div class="field section-spacer">
+          <label>New claim</label>
+          <textarea id="claimText" placeholder="A single factual statement · ideally backed by a source URL"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Source URL or citation</label>
+            <input id="claimSrc" placeholder="https://… or [Author Year Page]">
+          </div>
+          <div class="field">
+            <label>Initial verdict</label>
+            <select id="claimVerdict">
+              <option value="pending">pending</option>
+              <option value="confirmed">confirmed</option>
+              <option value="refuted">refuted</option>
+            </select>
+          </div>
+        </div>
+        <div class="row-actions">
+          <button class="btn btn-sm" onclick="addClaim()">+ add claim</button>
+        </div>
+
+        <div class="section-spacer">
+          <div class="tag">killed claims (the credibility builder)</div>
+          <h3 style="margin:4px 0 8px">What we refuse to publish.</h3>
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Refuted claims are listed openly · pre-empts the analyst who would otherwise discredit your whole report.</p>
+          <div id="killedList" style="font-size:13px;color:var(--cream-dim)">no killed claims yet</div>
+        </div>
+
+        <div class="row-actions section-spacer">
+          <button class="btn btn-ghost" onclick="goPhase(0)">← Phase 1</button>
+          <button class="btn" onclick="goPhase(2)">→ Phase 3 · Frame</button>
+        </div>
+      </div>
+
+      <!-- ── PHASE 3 · FRAME ── -->
+      <div class="phase-pane" id="pane2">
+        <div class="tag">frameworks · structured analysis</div>
+        <h3 style="margin:4px 0 14px">Apply the canonical frameworks.</h3>
+
+        <div class="fw-tabs">
+          <button class="fw-tab active" onclick="goFw('porter')">Porter 5 Forces</button>
+          <button class="fw-tab" onclick="goFw('7s')">McKinsey 7S</button>
+          <button class="fw-tab" onclick="goFw('bcg')">BCG Matrix</button>
+          <button class="fw-tab" onclick="goFw('vdt')">Value-Driver Tree</button>
+        </div>
+
+        <!-- Porter -->
+        <div class="fw-pane active" id="fw-porter">
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Industry attractiveness · score each force <strong style="color:var(--cream)">L/M/H</strong>, paste evidence.</p>
+          <div id="porterFields"></div>
+        </div>
+
+        <!-- 7S -->
+        <div class="fw-pane" id="fw-7s">
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Organisational fit · the 7 elements that must align for execution to land.</p>
+          <div id="sevensFields"></div>
+        </div>
+
+        <!-- BCG -->
+        <div class="fw-pane" id="fw-bcg">
+          <p class="dim" style="font-size:12px;margin-bottom:10px">2x2 matrix · market growth (vertical) × relative market share (horizontal). List business units, services, or product lines in each quadrant.</p>
+          <div class="bcg-grid">
+            <div class="bcg-cell"><div class="lbl">⭐ Stars · high growth · high share</div><textarea data-bcg="star" placeholder="invest aggressively"></textarea></div>
+            <div class="bcg-cell"><div class="lbl">❓ Question marks · high growth · low share</div><textarea data-bcg="question" placeholder="invest or divest · decide fast"></textarea></div>
+            <div class="bcg-cell"><div class="lbl">🐄 Cash cows · low growth · high share</div><textarea data-bcg="cow" placeholder="milk for cash to fund stars"></textarea></div>
+            <div class="bcg-cell"><div class="lbl">🐕 Dogs · low growth · low share</div><textarea data-bcg="dog" placeholder="divest unless strategic"></textarea></div>
+          </div>
+        </div>
+
+        <!-- VDT -->
+        <div class="fw-pane" id="fw-vdt">
+          <p class="dim" style="font-size:12px;margin-bottom:10px">Where the cash actually comes from. Revenue × Margin - Capital intensity. Find the highest-leverage driver.</p>
+          <div id="vdtFields"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addVdtDriver()" style="margin-top:8px">+ add driver</button>
+        </div>
+
+        <div class="row-actions section-spacer">
+          <button class="btn btn-ghost" onclick="goPhase(1)">← Phase 2</button>
+          <button class="btn" onclick="goPhase(3)">→ Phase 4 · Synthesize</button>
+        </div>
+      </div>
+
+      <!-- ── PHASE 4 · SYNTHESIZE ── -->
+      <div class="phase-pane" id="pane3">
+        <div class="tag">7-strand synthesis · the operator's lens</div>
+        <h3 style="margin:4px 0 8px">Cross-cutting analysis.</h3>
+        <p class="dim" style="font-size:13px;margin-bottom:14px">Same weave pattern that powers GroundLevel · re-skinned for strategy. Each strand asks a different question about the recommendation. Contradictions between strands flag where you've missed something.</p>
+
+        <div class="strand-grid" id="strandGrid"></div>
+
+        <div class="section-spacer">
+          <h3 style="margin-bottom:8px">Overall risk score</h3>
+          <div id="overallRisk" style="padding:14px;background:var(--void-3);border:1px solid var(--line);border-radius:5px;font-size:13px">
+            <strong>Click "Compute risk" to score the synthesis.</strong>
+            <p style="margin:6px 0 0;color:var(--cream-dim);font-size:12px">Algorithm: average of strand-evidence-density minus contradiction penalty (same scoreRisk pattern from groundlevel-sdk). Output: STRONG / MODERATE / WEAK / INADVISABLE.</p>
+          </div>
+          <button class="btn btn-sm" style="margin-top:8px" onclick="computeRisk()">Compute risk</button>
+        </div>
+
+        <div class="row-actions section-spacer">
+          <button class="btn btn-ghost" onclick="goPhase(2)">← Phase 3</button>
+          <button class="btn" onclick="goPhase(4)">→ Phase 5 · Deck</button>
+        </div>
+      </div>
+
+      <!-- ── PHASE 5 · DECK ── -->
+      <div class="phase-pane" id="pane4">
+        <div class="tag">minto pyramid · deck output</div>
+        <h3 style="margin:4px 0 8px">Top-down storyline.</h3>
+        <p class="dim" style="font-size:13px;margin-bottom:14px">Governing thought → 3 key arguments → 3 supporting data points each. The McKinsey deck structure. Output as markdown, JSON, or signed reveal.js HTML.</p>
+
+        <div class="pyramid">
+          <div class="pyr-row governing">
+            <div class="lbl">◊ governing thought (the one-line recommendation)</div>
+            <textarea id="govThought" placeholder="In one sentence: what should the board do?"></textarea>
+          </div>
+
+          <div id="argumentsBox"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addArgument()" style="align-self:flex-start">+ add argument</button>
+        </div>
+
+        <div class="section-spacer">
+          <div class="tag">output</div>
+          <div class="row-actions">
+            <button class="btn" onclick="generateDeck('markdown')">Generate · markdown</button>
+            <button class="btn btn-ghost" onclick="generateDeck('reveal')">Generate · reveal.js HTML</button>
+            <button class="btn btn-ghost" onclick="generateDeck('envelope')">Sign envelope · Konomi</button>
+            <button class="btn btn-ghost" onclick="finishEngagement()">◊ Finish · +21 κ</button>
+          </div>
+          <div class="outview" id="deckOut" style="margin-top:14px;display:none"></div>
+        </div>
+
+        <div class="row-actions section-spacer">
+          <button class="btn btn-ghost" onclick="goPhase(3)">← Phase 4</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HISTORY ═══════════ -->
+<section class="view" id="history">
+  <div class="tag">past engagements</div>
+  <h2 style="margin:4px 0 14px;font:700 22px/1.1 'Times New Roman',serif">History.</h2>
+  <div class="eng-list" id="engList"></div>
+  <p class="dim" style="margin-top:18px;font-size:12px">Every engagement is audit-chained · final hash sealed at "Finish" · Konomi-signed envelope exportable as JSON for client provenance.</p>
+</section>
+
+<!-- ═══════════ SETTINGS ═══════════ -->
+<section class="view" id="settings">
+  <div class="tag">configuration</div>
+  <h2 style="margin:4px 0 14px;font:700 22px/1.1 'Times New Roman',serif">Settings.</h2>
+
+  <div class="set-card">
+    <h3>◊ Konomi identity</h3>
+    <p class="dim" style="font-size:13px;margin-top:0">Ed25519 keypair generated on first boot via libsodium-wasm · stored in IndexedDB · signs every engagement envelope.</p>
+    <div class="row"><span class="l">status</span><span class="v" id="konomiStatus">initialising…</span></div>
+    <div class="row"><span class="l">public key</span><span class="kid" id="konomiPubKey">—</span></div>
+    <div class="row"><span class="l">created</span><span class="v" id="konomiCreated">—</span></div>
+    <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="exportKonomiSeed()">Export seed</button>
+      <button class="btn btn-ghost btn-sm" onclick="importKonomiSeed()">Import seed</button>
+      <button class="btn btn-ghost btn-sm" onclick="copyPubKey()">Copy public key</button>
+    </div>
+  </div>
+
+  <div class="set-card">
+    <h3>κ ledger</h3>
+    <div class="row"><span class="l">current balance</span><span class="v" id="kccCurrentBal">0</span></div>
+    <div class="row"><span class="l">lifetime earned</span><span class="v" id="kccLifetime">0</span></div>
+    <div class="row"><span class="l">engagements completed</span><span class="v" id="kccEngagements">0</span></div>
+    <div style="margin-top:10px"><button class="btn btn-ghost btn-sm" onclick="exportKccLedger()">Export ledger JSON</button></div>
+  </div>
+
+  <div class="set-card">
+    <h3>BYOK · LLM cascade (optional)</h3>
+    <p class="dim" style="font-size:13px;margin-top:0">For auto-fill of MECE trees, framework synthesis, and storyline generation. Key stays in localStorage · only sent to the provider you pick.</p>
+    <div class="field"><label>Provider</label>
+      <select id="byokProvider">
+        <option value="">— none · manual mode —</option>
+        <option value="anthropic">Anthropic (Claude)</option>
+        <option value="openai">OpenAI (GPT)</option>
+        <option value="google">Google (Gemini)</option>
+      </select>
+    </div>
+    <div class="field"><label>API key</label><input type="password" id="byokKey" placeholder="sk-…"></div>
+    <button class="btn btn-sm" onclick="saveByok()">Save</button>
+  </div>
+
+  <div class="set-card">
+    <h3>Sister tools in this browser</h3>
+    <p class="dim" style="font-size:13px;margin-top:0">Tools that emit on <code style="color:var(--gold)">fall-signal</code>.</p>
+    <div id="meshList" class="kid" style="line-height:1.8">listening…</div>
+  </div>
+</section>
+
+<footer>
+  <div>◊ <strong>OPERATOR</strong> · v1.0 · MIT open source · zero tracking · sovereign single-file · works offline</div>
+  <div style="margin-top:6px">part of the Fall* estate · sister tools: <a href="https://github.com/sjgant80-hub/groundlevel">groundlevel</a> · <a href="https://github.com/sjgant80-hub/nhs-reinjection">nhs-reinjection</a> · <a href="https://github.com/sjgant80-hub/kard">kard</a> · <a href="https://github.com/sjgant80-hub/fall-euaiact">fall-euaiact</a></div>
+  <div style="margin-top:6px">repo · <a href="https://github.com/sjgant80-hub/operator">github.com/sjgant80-hub/operator</a> · pro-slot · <a href="https://github.com/sjgant80-hub/operator/blob/main/src/pro-slot.md">src/pro-slot.md</a></div>
+</footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <h3 id="mTitle">Title</h3>
+    <div id="mBody"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">close</button>
+      <button class="btn btn-sm" id="mOk" onclick="mConfirm()">ok</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+// ═════════════════════════════════════════════════════════════
+// OPERATOR · core engine + estate layers
+// ═════════════════════════════════════════════════════════════
+
+// ── views
+function goView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === name));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === name));
+  if (name === 'history') renderHistory();
+}
+function goPhase(idx) {
+  goView('engagement');
+  document.querySelectorAll('.phase-pane').forEach((p, i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.eng-tab').forEach((b, i) => b.classList.toggle('active', i === idx));
+}
+function goFw(key) {
+  document.querySelectorAll('.fw-tab').forEach(t => t.classList.toggle('active', t.textContent.toLowerCase().includes(key.replace('vdt','value').replace('7s','7s'))));
+  document.querySelectorAll('.fw-pane').forEach(p => p.classList.toggle('active', p.id === 'fw-' + key));
+}
+
+// ── state
+const LS = 'operator.v1.';
+function lsGet(k, fb) { try { const v = localStorage.getItem(LS+k); return v ? JSON.parse(v) : fb; } catch (_) { return fb; } }
+function lsSet(k, v) { try { localStorage.setItem(LS+k, JSON.stringify(v)); } catch (_) {} }
+
+let E = newEngagementState();
+let HISTORY = lsGet('history', []);
+
+function newEngagementState() {
+  return {
+    id: 'eng-' + Math.random().toString(36).slice(2,10),
+    title: 'Untitled',
+    question: '',
+    stakeholders: '',
+    mece: [{ id: 'm1', text: 'Root question (auto-set from question above)', children: [] }],
+    hypotheses: [],
+    claims: [],
+    porter: { entry:'', supplier:'', buyer:'', substitute:'', rivalry:'' },
+    sevens: { strategy:'', structure:'', systems:'', style:'', staff:'', skills:'', shared:'' },
+    bcg: { star:'', question:'', cow:'', dog:'' },
+    vdt: [],
+    strands: {
+      CUSTOMER: { notes:'', risk:'' },
+      CAPABILITY: { notes:'', risk:'' },
+      CHANNEL: { notes:'', risk:'' },
+      COST: { notes:'', risk:'' },
+      CASH: { notes:'', risk:'' },
+      COMPLIANCE: { notes:'', risk:'' },
+      CULTURE: { notes:'', risk:'' },
+    },
+    minto: { governing: '', arguments: [{ thesis:'', support:['','',''] }] },
+    chain: [], prevHash: '0'.repeat(64),
+    startedAt: new Date().toISOString(),
+  };
+}
+
+const STRAND_DEFS = [
+  { name:'CUSTOMER',  ic:'🎯', q:'Who pays · why · how loyally?' },
+  { name:'CAPABILITY',ic:'⚒', q:'What do we actually do well?' },
+  { name:'CHANNEL',   ic:'🛣', q:'How does value reach the buyer?' },
+  { name:'COST',      ic:'⚖', q:'Where does money exit the system?' },
+  { name:'CASH',      ic:'💰', q:'Working capital + investment shape?' },
+  { name:'COMPLIANCE',ic:'⚓', q:'Regulatory floor and risk?' },
+  { name:'CULTURE',   ic:'🧬', q:'Organisational reality vs strategy on paper?' },
+];
+
+const PORTER_FIELDS = [
+  { key:'entry',      lbl:'Threat of new entry'        },
+  { key:'supplier',   lbl:'Supplier power'             },
+  { key:'buyer',      lbl:'Buyer power'                },
+  { key:'substitute', lbl:'Threat of substitution'     },
+  { key:'rivalry',    lbl:'Competitive rivalry'        },
+];
+
+const SEVENS_FIELDS = [
+  { key:'strategy',  lbl:'Strategy'  },
+  { key:'structure', lbl:'Structure' },
+  { key:'systems',   lbl:'Systems'   },
+  { key:'style',     lbl:'Style'     },
+  { key:'staff',     lbl:'Staff'     },
+  { key:'skills',    lbl:'Skills'    },
+  { key:'shared',    lbl:'Shared values' },
+];
+
+const MECE_TEMPLATES = {
+  'acquisition': [
+    'Is the target strategically attractive?',
+    'Can we afford it without breaking the balance sheet?',
+    'Can we actually integrate it post-close?',
+    'Will the deal create or destroy value vs alternatives?',
+  ],
+  'market-entry': [
+    'How attractive is the market structurally?',
+    'Do we have right-to-win vs incumbents?',
+    'What\'s the cheapest viable entry mode?',
+    'What\'s the exit option if it doesn\'t work?',
+  ],
+  'cost-transform': [
+    'Where are the biggest cost lines today?',
+    'Which of them are addressable in 12 months?',
+    'What\'s the people / process / tech / vendor mix per opportunity?',
+    'What\'s the change-management cost vs the savings?',
+  ],
+};
+
+// ── persist
+function persistEngagement() { lsSet('current', E); }
+function loadCurrent() { E = lsGet('current', null) || newEngagementState(); }
+
+// ── render Phase 1 (Diagnose)
+function renderMece() {
+  const tree = document.getElementById('meceTree');
+  tree.innerHTML = '';
+  E.mece.forEach((node, i) => {
+    const root = i === 0;
+    const div = document.createElement('div');
+    div.className = 'tree-node ' + (root ? 'root' : 'branch');
+    div.innerHTML = `
+      <div class="top">
+        <input type="text" value="${esc(node.text)}" oninput="updateMece(${i}, this.value)" placeholder="${root ? 'Root question' : 'Sub-question'}">
+        <div class="actions">
+          ${root ? '' : `<button onclick="addChild(${i})">+ leaf</button><button onclick="removeBranch(${i})">×</button>`}
+        </div>
+      </div>
+      ${(node.children || []).map((c, ci) => `
+        <div class="tree-children">
+          <div class="tree-node" style="margin-bottom:4px;background:var(--void-2)">
+            <div class="top">
+              <input type="text" value="${esc(c)}" oninput="updateChild(${i}, ${ci}, this.value)" placeholder="Specific data needed">
+              <div class="actions"><button onclick="removeChild(${i}, ${ci})">×</button></div>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    `;
+    tree.appendChild(div);
+  });
+}
+function updateMece(i, v) { E.mece[i].text = v; persistEngagement(); }
+function addBranch() { E.mece.push({ id:'m'+E.mece.length, text:'', children:[] }); renderMece(); persistEngagement(); }
+function removeBranch(i) { if (i > 0) { E.mece.splice(i, 1); renderMece(); persistEngagement(); } }
+function addChild(i) { E.mece[i].children.push(''); renderMece(); persistEngagement(); }
+function updateChild(i, ci, v) { E.mece[i].children[ci] = v; persistEngagement(); }
+function removeChild(i, ci) { E.mece[i].children.splice(ci, 1); renderMece(); persistEngagement(); }
+function loadMeceTemplate(key) {
+  E.mece = [
+    E.mece[0] || { text: E.question, children: [] },
+    ...MECE_TEMPLATES[key].map((t, i) => ({ id:'m'+(i+1), text:t, children:[] }))
+  ];
+  renderMece(); persistEngagement();
+}
+
+function renderHypos() {
+  const el = document.getElementById('hypoList');
+  el.innerHTML = '';
+  if (E.hypotheses.length === 0) {
+    el.innerHTML = '<div class="dim" style="font-size:12px">no hypotheses yet · add one to start</div>';
+    return;
+  }
+  E.hypotheses.forEach((h, i) => {
+    const div = document.createElement('div');
+    div.className = 'tree-node branch';
+    div.innerHTML = `
+      <div class="top">
+        <input type="text" value="${esc(h)}" oninput="E.hypotheses[${i}]=this.value;persistEngagement()" placeholder="Hypothesis (top-down · what you'd recommend without evidence)">
+        <div class="actions"><button onclick="removeHypo(${i})">×</button></div>
+      </div>`;
+    el.appendChild(div);
+  });
+}
+function addHypothesis() { E.hypotheses.push(''); renderHypos(); persistEngagement(); }
+function removeHypo(i) { E.hypotheses.splice(i, 1); renderHypos(); persistEngagement(); }
+
+// ── Phase 2 · Research
+function renderClaims() {
+  const list = document.getElementById('claimsList');
+  list.innerHTML = '';
+  if (E.claims.length === 0) {
+    list.innerHTML = '<div class="dim" style="font-size:12px">no claims yet</div>';
+  } else {
+    E.claims.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'claim';
+      div.innerHTML = `
+        <div>
+          <div class="body">${esc(c.text)}</div>
+          <div class="src">${esc(c.src || '—')}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+          <span class="verdict ${c.verdict}">${c.verdict}</span>
+          <button class="btn btn-ghost btn-sm" onclick="cycleVerdict(${i})">cycle</button>
+          <button class="btn btn-ghost btn-sm" onclick="removeClaim(${i})">×</button>
+        </div>`;
+      list.appendChild(div);
+    });
+  }
+  // killed list
+  const killed = E.claims.filter(c => c.verdict === 'refuted');
+  const k = document.getElementById('killedList');
+  k.innerHTML = killed.length === 0
+    ? '<span class="dim">no killed claims yet</span>'
+    : killed.map(c => `<div style="padding:6px 0;border-bottom:1px dotted var(--line)"><strong>❌ ${esc(c.text)}</strong><br><span class="src" style="font-size:11px">${esc(c.src || '—')}</span></div>`).join('');
+}
+function addClaim() {
+  const t = document.getElementById('claimText').value.trim();
+  if (!t) return toast('paste a claim first');
+  E.claims.push({ text: t, src: document.getElementById('claimSrc').value.trim(), verdict: document.getElementById('claimVerdict').value });
+  document.getElementById('claimText').value = '';
+  document.getElementById('claimSrc').value = '';
+  hashMove('research', 'claim-added', { text: t });
+  renderClaims(); persistEngagement();
+}
+function cycleVerdict(i) {
+  const order = ['pending','confirmed','refuted'];
+  const cur = order.indexOf(E.claims[i].verdict);
+  E.claims[i].verdict = order[(cur + 1) % 3];
+  hashMove('research', 'claim-recerdict', { idx: i, verdict: E.claims[i].verdict });
+  renderClaims(); persistEngagement();
+}
+function removeClaim(i) { E.claims.splice(i, 1); renderClaims(); persistEngagement(); }
+
+// ── Phase 3 · Frameworks
+function renderPorter() {
+  const el = document.getElementById('porterFields');
+  el.innerHTML = PORTER_FIELDS.map(f => `
+    <div class="field">
+      <label>${f.lbl}</label>
+      <textarea data-porter="${f.key}" oninput="E.porter['${f.key}']=this.value;persistEngagement()" placeholder="Low / Medium / High · with evidence">${esc(E.porter[f.key] || '')}</textarea>
+    </div>
+  `).join('');
+}
+function renderSevens() {
+  const el = document.getElementById('sevensFields');
+  el.innerHTML = SEVENS_FIELDS.map(f => `
+    <div class="field">
+      <label>${f.lbl}</label>
+      <textarea data-7s="${f.key}" oninput="E.sevens['${f.key}']=this.value;persistEngagement()">${esc(E.sevens[f.key] || '')}</textarea>
+    </div>
+  `).join('');
+}
+function renderBcg() {
+  document.querySelectorAll('[data-bcg]').forEach(t => {
+    t.value = E.bcg[t.dataset.bcg] || '';
+    t.oninput = () => { E.bcg[t.dataset.bcg] = t.value; persistEngagement(); };
+  });
+}
+function renderVdt() {
+  const el = document.getElementById('vdtFields');
+  el.innerHTML = '';
+  if (E.vdt.length === 0) {
+    el.innerHTML = '<div class="dim" style="font-size:12px;margin-bottom:8px">no drivers yet · add at least one</div>';
+  }
+  E.vdt.forEach((d, i) => {
+    const div = document.createElement('div');
+    div.className = 'tree-node branch';
+    div.innerHTML = `
+      <div class="field-row">
+        <div class="field"><label>Driver</label><input value="${esc(d.name||'')}" oninput="E.vdt[${i}].name=this.value;persistEngagement()" placeholder="e.g. ARPU · churn · COGS · headcount"></div>
+        <div class="field"><label>Current value</label><input value="${esc(d.value||'')}" oninput="E.vdt[${i}].value=this.value;persistEngagement()" placeholder="£·% · #"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Sensitivity (Δ cash per Δ driver)</label><input value="${esc(d.sensitivity||'')}" oninput="E.vdt[${i}].sensitivity=this.value;persistEngagement()" placeholder="e.g. 1pp churn = £80k/yr"></div>
+        <div class="field"><label>Addressability (12m)</label><select onchange="E.vdt[${i}].addressable=this.value;persistEngagement()">
+          <option value="">—</option>
+          <option ${d.addressable==='easy'?'selected':''} value="easy">easy</option>
+          <option ${d.addressable==='medium'?'selected':''} value="medium">medium</option>
+          <option ${d.addressable==='hard'?'selected':''} value="hard">hard</option>
+        </select></div>
+      </div>
+      <div class="actions"><button onclick="removeVdtDriver(${i})">× remove</button></div>
+    `;
+    el.appendChild(div);
+  });
+}
+function addVdtDriver() { E.vdt.push({ name:'', value:'', sensitivity:'', addressable:'' }); renderVdt(); persistEngagement(); }
+function removeVdtDriver(i) { E.vdt.splice(i, 1); renderVdt(); persistEngagement(); }
+
+// ── Phase 4 · Synthesize
+function renderStrands() {
+  const grid = document.getElementById('strandGrid');
+  grid.innerHTML = '';
+  STRAND_DEFS.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'strand';
+    const cur = E.strands[s.name] || { notes:'', risk:'' };
+    div.innerHTML = `
+      <div class="head"><h4>${s.name}</h4><span class="ic">${s.ic}</span></div>
+      <div class="dim" style="font-size:11px;margin-bottom:6px">${s.q}</div>
+      <textarea oninput="E.strands['${s.name}'].notes=this.value;persistEngagement()">${esc(cur.notes)}</textarea>
+      <div style="margin-top:6px">
+        <select onchange="E.strands['${s.name}'].risk=this.value;persistEngagement();renderStrands()">
+          <option value="">— risk —</option>
+          <option ${cur.risk==='strong'?'selected':''} value="strong">strong</option>
+          <option ${cur.risk==='moderate'?'selected':''} value="moderate">moderate</option>
+          <option ${cur.risk==='weak'?'selected':''} value="weak">weak</option>
+          <option ${cur.risk==='inadvisable'?'selected':''} value="inadvisable">inadvisable</option>
+        </select>
+        ${cur.risk ? `<span class="risk ${cur.risk}">${cur.risk}</span>` : ''}
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+function computeRisk() {
+  const scores = { strong: 3, moderate: 2, weak: 1, inadvisable: 0, '': 0 };
+  const vals = Object.values(E.strands).map(s => scores[s.risk] ?? 0);
+  const filled = vals.filter(v => v > 0).length;
+  const avg = filled === 0 ? 0 : (vals.reduce((a,b)=>a+b,0) / filled);
+  const refutedPenalty = E.claims.filter(c => c.verdict === 'refuted').length * 0.1;
+  const final = Math.max(0, avg - refutedPenalty);
+  let label, color;
+  if (final >= 2.4) { label = 'STRONG';      color = 'var(--green)'; }
+  else if (final >= 1.5) { label = 'MODERATE';   color = 'var(--gold)'; }
+  else if (final >= 0.8) { label = 'WEAK';       color = 'var(--red)'; }
+  else                   { label = 'INADVISABLE'; color = 'var(--red)'; }
+  document.getElementById('overallRisk').innerHTML = `
+    <div style="font-size:24px;font-weight:700;color:${color}">${label} · ${final.toFixed(2)} / 3</div>
+    <p style="margin:6px 0 0;color:var(--cream-dim);font-size:12px">${filled} strand(s) rated · ${E.claims.filter(c=>c.verdict==='refuted').length} refuted claim(s) penalising</p>
+  `;
+  hashMove('synthesis', 'risk-computed', { label, score: final });
+  persistEngagement();
+}
+
+// ── Phase 5 · Deck
+function renderArguments() {
+  const box = document.getElementById('argumentsBox');
+  box.innerHTML = '';
+  E.minto.arguments.forEach((a, i) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div class="pyr-row argument">
+        <div class="lbl">argument ${i+1}</div>
+        <textarea oninput="E.minto.arguments[${i}].thesis=this.value;persistEngagement()" placeholder="The key argument supporting the governing thought">${esc(a.thesis)}</textarea>
+      </div>
+      ${a.support.map((s, si) => `
+        <div class="pyr-row support">
+          <div class="lbl">support ${si+1}</div>
+          <textarea oninput="E.minto.arguments[${i}].support[${si}]=this.value;persistEngagement()" placeholder="Specific data point or citation">${esc(s)}</textarea>
+        </div>
+      `).join('')}
+      <div style="margin:8px 0 14px 32px"><button class="btn btn-ghost btn-sm" onclick="removeArgument(${i})">× remove argument</button></div>
+    `;
+    box.appendChild(div);
+  });
+}
+function addArgument() { E.minto.arguments.push({ thesis:'', support:['','',''] }); renderArguments(); persistEngagement(); }
+function removeArgument(i) { E.minto.arguments.splice(i, 1); renderArguments(); persistEngagement(); }
+
+// ── Deck generation
+function generateDeck(format) {
+  const gov = E.minto.governing || '[governing thought]';
+  if (format === 'markdown') {
+    const md = buildMarkdownDeck();
+    showOut(md);
+    downloadText(md, E.id + '.md');
+  } else if (format === 'reveal') {
+    const html = buildRevealHtml();
+    showOut(html.slice(0, 2000) + '\n\n[truncated · full file downloaded]');
+    downloadText(html, E.id + '.html');
+  } else if (format === 'envelope') {
+    signEnvelope();
+  }
+}
+
+function buildMarkdownDeck() {
+  let md = `# ${E.title}\n\n`;
+  md += `**Question:** ${E.question}\n\n`;
+  md += `**Stakeholders:** ${E.stakeholders || '[stakeholders]'}\n\n---\n\n`;
+  md += `## ◊ Governing thought\n\n${E.minto.governing}\n\n`;
+  E.minto.arguments.forEach((a, i) => {
+    md += `## Argument ${i+1}\n\n${a.thesis}\n\n`;
+    a.support.filter(s => s.trim()).forEach((s, si) => {
+      md += `- **Support ${si+1}:** ${s}\n`;
+    });
+    md += '\n';
+  });
+  md += `---\n\n## Frameworks\n\n`;
+  md += `### Porter 5 Forces\n` + PORTER_FIELDS.map(f => `- **${f.lbl}:** ${E.porter[f.key]||'—'}`).join('\n') + '\n\n';
+  md += `### McKinsey 7S\n` + SEVENS_FIELDS.map(f => `- **${f.lbl}:** ${E.sevens[f.key]||'—'}`).join('\n') + '\n\n';
+  md += `### BCG Matrix\n- **Stars:** ${E.bcg.star||'—'}\n- **Question marks:** ${E.bcg.question||'—'}\n- **Cash cows:** ${E.bcg.cow||'—'}\n- **Dogs:** ${E.bcg.dog||'—'}\n\n`;
+  md += `### Value-Driver Tree\n` + (E.vdt.length ? E.vdt.map(d => `- **${d.name}** (${d.value || '—'}) · sensitivity: ${d.sensitivity || '—'} · addressable: ${d.addressable || '—'}`).join('\n') : '_no drivers added_') + '\n\n';
+  md += `---\n\n## 7-strand synthesis\n\n`;
+  Object.entries(E.strands).forEach(([k, v]) => {
+    md += `### ${k}\n${v.notes || '—'}\n_Risk: ${v.risk || 'unrated'}_\n\n`;
+  });
+  md += `---\n\n## Killed claims (transparency)\n\n`;
+  const killed = E.claims.filter(c => c.verdict === 'refuted');
+  md += killed.length ? killed.map(c => `- ❌ ${c.text} · _${c.src || 'no source'}_`).join('\n') : '_no killed claims_';
+  md += `\n\n---\n\n_Engagement ${E.id} · ${E.startedAt} · audit chain hash: ${E.prevHash.slice(0,16)}…_\n`;
+  md += `\n_Signed against Konomi key: ${KONOMI.publicKeyHex ? KONOMI.publicKeyHex.slice(0,16)+'…' : '(not signed)'}_\n`;
+  return md;
+}
+
+function buildRevealHtml() {
+  const slides = [];
+  slides.push(`<section><h1>${esc(E.title)}</h1><h3>${esc(E.question)}</h3><p>${esc(E.stakeholders)}</p></section>`);
+  slides.push(`<section><h2>◊ Governing thought</h2><p style="font-size:1.3em">${esc(E.minto.governing)}</p></section>`);
+  E.minto.arguments.forEach((a, i) => {
+    slides.push(`<section><h2>Argument ${i+1}</h2><p>${esc(a.thesis)}</p><ul>${a.support.filter(s=>s.trim()).map(s => `<li>${esc(s)}</li>`).join('')}</ul></section>`);
+  });
+  slides.push(`<section><h2>Killed claims · transparency</h2>${E.claims.filter(c=>c.verdict==='refuted').map(c=>`<p>❌ ${esc(c.text)}</p>`).join('') || '<p>No killed claims.</p>'}</section>`);
+  slides.push(`<section><h3>◊ Audit chain</h3><p style="font-family:monospace;font-size:0.7em">${E.prevHash}</p><p>Engagement ${E.id} · signed</p></section>`);
+  return `<!doctype html><html><head><meta charset=utf-8><title>${esc(E.title)}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+</head><body><div class="reveal"><div class="slides">${slides.join('')}</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"><\/script>
+<script>Reveal.initialize({hash:true,slideNumber:true});<\/script></body></html>`;
+}
+
+async function signEnvelope() {
+  if (!KONOMI.ready) return toast('Konomi initialising · try again');
+  const env = {
+    kind: 'operator-engagement-v1',
+    issuer: KONOMI.publicKeyHex,
+    issuedAt: new Date().toISOString(),
+    engagement: {
+      id: E.id, title: E.title, question: E.question,
+      startedAt: E.startedAt,
+      finalHash: E.prevHash,
+      claimsTotal: E.claims.length,
+      claimsRefuted: E.claims.filter(c=>c.verdict==='refuted').length,
+      governing: E.minto.governing,
+    }
+  };
+  const sig = await KONOMI.sign(JSON.stringify(env));
+  const out = { envelope: env, signature: sig };
+  showOut(JSON.stringify(out, null, 2));
+  downloadText(JSON.stringify(out, null, 2), E.id + '-envelope.json');
+}
+
+function showOut(text) {
+  const el = document.getElementById('deckOut');
+  el.style.display = 'block';
+  el.textContent = text;
+}
+
+function downloadText(text, name) {
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = name; a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function finishEngagement() {
+  await signEnvelope();
+  HISTORY.unshift({
+    id: E.id, title: E.title, question: E.question,
+    startedAt: E.startedAt, endedAt: new Date().toISOString(),
+    finalHash: E.prevHash, claims: E.claims.length, killed: E.claims.filter(c=>c.verdict==='refuted').length,
+    governing: E.minto.governing,
+  });
+  if (HISTORY.length > 100) HISTORY.length = 100;
+  lsSet('history', HISTORY);
+  if (window.KCC) await KCC.earn(21, 'engagement complete · ' + E.title);
+  toast('engagement sealed · +21 κ');
+  goView('history');
+}
+
+// ── History
+function renderHistory() {
+  const el = document.getElementById('engList');
+  if (HISTORY.length === 0) {
+    el.innerHTML = '<div class="dim" style="text-align:center;padding:24px;font-size:13px">no engagements yet · start one</div>';
+    return;
+  }
+  el.innerHTML = HISTORY.map(h => `
+    <div class="eng-row">
+      <div>
+        <div class="title">${esc(h.title)}</div>
+        <div class="ts">${new Date(h.startedAt).toLocaleString()} · ${h.claims} claim(s) · ${h.killed} refuted</div>
+        <div class="hash">${h.finalHash.slice(0,40)}…</div>
+      </div>
+      <div class="dim" style="font-size:12px;text-align:right;max-width:280px">${esc(h.governing || '—')}</div>
+      <button class="btn btn-ghost btn-sm" onclick="exportEngagement('${h.id}')">export</button>
+    </div>
+  `).join('');
+}
+function exportEngagement(id) {
+  const h = HISTORY.find(x => x.id === id);
+  if (!h) return;
+  downloadText(JSON.stringify(h, null, 2), id + '.json');
+}
+
+// ── Title/question binding
+['engTitle','engQuestion','engStakeholders'].forEach(id => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const key = id.replace('eng','').toLowerCase();
+      E[key === 'question' ? 'question' : (key === 'title' ? 'title' : 'stakeholders')] = el.value;
+      if (key === 'title') document.getElementById('engTitleDisp').textContent = el.value || 'Untitled';
+      if (key === 'question' && E.mece[0]) E.mece[0].text = el.value, renderMece();
+      persistEngagement();
+    });
+  });
+});
+
+// ── new engagement / sample
+function newEngagement() {
+  if (!confirm('Discard current engagement and start fresh? (Use save before to keep it.)')) return;
+  E = newEngagementState();
+  refreshAll();
+  goPhase(0);
+  toast('new engagement started');
+}
+function saveEngagement() {
+  persistEngagement();
+  toast('engagement state saved');
+}
+function loadSample() {
+  E = {
+    ...newEngagementState(),
+    title: 'Should we acquire Competitor X?',
+    question: 'Acquire Competitor X for £40m · accretive within 24 months or destroys value?',
+    stakeholders: 'CEO · CFO · Board Chair · Head of M&A',
+    mece: [
+      { id:'m0', text:'Should we acquire Competitor X?', children:[] },
+      { id:'m1', text:'Is the target strategically attractive?', children:['Customer overlap','Capability gap closed','Geographic expansion'] },
+      { id:'m2', text:'Can we afford it without breaking the balance sheet?', children:['Cash on hand','Debt capacity','Equity dilution'] },
+      { id:'m3', text:'Can we actually integrate it post-close?', children:['Tech stack compatibility','Cultural fit','Key person retention'] },
+      { id:'m4', text:'Will the deal create or destroy value vs alternatives?', children:['vs organic growth','vs different target','vs buy-back'] },
+    ],
+    hypotheses: [
+      'The target is value-accretive if we can close 60% of integration synergy within 18 months',
+      'Cultural fit is the dominant risk · not financials',
+    ],
+    claims: [
+      { text:'Competitor X has 12% market share in the EU mid-market segment vs our 28%', src:'company filing 2024', verdict:'confirmed' },
+      { text:'Their EBITDA margin is 9.1% vs our 14% · they\'re less efficient', src:'10-K equivalent annual report', verdict:'confirmed' },
+      { text:'They have 220 enterprise customers · 40% overlap with our top 100', src:'sales team analysis', verdict:'pending' },
+      { text:'The CEO will leave 6 months post-close · key-person risk', src:'industry rumour · not verified', verdict:'refuted' },
+    ],
+    minto: {
+      governing: 'Acquire for ≤ £36m subject to retention agreements with top 3 engineers; walk away above £40m.',
+      arguments: [
+        { thesis:'Strategic fit is real (customer overlap + capability closure)', support:['12% complementary market share','220 enterprise customers · 60% non-overlap = pure expansion','closes our gap in workflow automation'] },
+        { thesis:'Financial structure works at £36m, breaks at £40m', support:['cash + revolver covers £36m without equity issuance','accretive in year 2 at £36m valuation','equity dilution >£40m unacceptable to current holders'] },
+        { thesis:'Integration risk is concentrated in 3 engineers', support:['core IP held by 3 named individuals','retention package must be condition of close','culture audit shows low compatibility · 70% chance of friction year 1'] },
+      ]
+    },
+    strands: {
+      CUSTOMER:  { notes:'60% non-overlap = pure expansion · loyalty data unclear post-close', risk:'moderate' },
+      CAPABILITY:{ notes:'Closes workflow automation gap · key engineers retain required', risk:'moderate' },
+      CHANNEL:   { notes:'Their EU sales motion is direct · ours is partner-led · channel conflict risk', risk:'weak' },
+      COST:      { notes:'Integration cost £4-6m · cost synergy £8-12m · net positive year 2', risk:'strong' },
+      CASH:      { notes:'Cash + revolver covers £36m · equity dilution beyond that', risk:'strong' },
+      COMPLIANCE:{ notes:'EU AI Act exposure unclear · target uses LLM for support · audit chain needed', risk:'weak' },
+      CULTURE:   { notes:'Engineering culture clash · 70% chance year-1 friction · retention needs cash', risk:'weak' },
+    },
+    porter: { entry:'M · M&A is the path · regulators flag concentration', supplier:'L · multiple cloud vendors', buyer:'H · enterprise buyers consolidate', substitute:'M · in-house builds', rivalry:'H · 4 of 5 competitors are PE-backed' },
+    sevens: { strategy:'Acquire, integrate, exit in 5 years', structure:'Holdco · two BUs · shared engineering', systems:'Migrate to our stack within 18mo', style:'Hands-on integration owner', staff:'Retain top 30 · backfill 10', skills:'Workflow automation deepens', shared:'Customer-first · MIT-curious' },
+    bcg: { star:'Workflow automation BU (post-close)', question:'EU mid-market expansion', cow:'Existing enterprise base · 14% margin', dog:'Legacy on-prem · winding down' },
+    vdt: [
+      { name:'ARPU', value:'£42k', sensitivity:'+10% = £8m/yr at scale', addressable:'medium' },
+      { name:'Churn', value:'6%', sensitivity:'-1pp = £4.8m/yr', addressable:'hard' },
+      { name:'Integration COGS', value:'£5m one-off', sensitivity:'capped if scope held', addressable:'easy' },
+      { name:'Headcount synergy', value:'14 redundancies', sensitivity:'£1.4m/yr', addressable:'easy' },
+    ],
+    chain: [], prevHash: '0'.repeat(64),
+    startedAt: new Date().toISOString(),
+  };
+  refreshAll();
+  goPhase(0);
+  toast('sample engagement loaded · explore all 5 phases');
+}
+
+function refreshAll() {
+  document.getElementById('engTitle').value = E.title;
+  document.getElementById('engQuestion').value = E.question;
+  document.getElementById('engStakeholders').value = E.stakeholders;
+  document.getElementById('engTitleDisp').textContent = E.title;
+  renderMece();
+  renderHypos();
+  renderClaims();
+  renderPorter();
+  renderSevens();
+  renderBcg();
+  renderVdt();
+  renderStrands();
+  renderArguments();
+  document.getElementById('govThought').value = E.minto.governing;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('govThought').addEventListener('input', e => {
+    E.minto.governing = e.target.value; persistEngagement();
+  });
+});
+
+// ── Audit chain
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function hashMove(phase, kind, data) {
+  const entry = { phase, kind, data, prev: E.prevHash, ts: Date.now() };
+  E.chain.push(entry);
+  sha256(JSON.stringify(entry)).then(h => { entry.hash = h; E.prevHash = h; });
+}
+
+// ── helpers
+function esc(s) { return String(s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function toast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {position:'fixed',bottom:'24px',left:'50%',transform:'translateX(-50%)',background:'var(--void-2)',border:'1px solid var(--gold)',color:'var(--cream)',padding:'9px 18px',borderRadius:'5px',zIndex:'100',fontSize:'13px',boxShadow:'0 4px 18px rgba(0,0,0,.4)'});
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+let modalCb = () => {};
+function showModal(title, body, ok) {
+  document.getElementById('mTitle').textContent = title;
+  document.getElementById('mBody').innerHTML = body;
+  modalCb = ok || closeModal;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function mConfirm() { modalCb(); }
+
+// ═════════════════════════════════════════════════════════════
+// KONOMI · libsodium-wasm Ed25519 (lazy)
+// ═════════════════════════════════════════════════════════════
+const KONOMI = { keypair:null, publicKeyHex:'', createdAt:null, ready:false,
+  async init() {
+    const stored = await idbGet('konomi-keypair');
+    const sodium = await getSodium();
+    let kp = stored;
+    if (!kp) {
+      const k = sodium.crypto_sign_keypair();
+      kp = { publicKey: Array.from(k.publicKey), privateKey: Array.from(k.privateKey), createdAt: new Date().toISOString() };
+      await idbSet('konomi-keypair', kp);
+    }
+    this.keypair = { publicKey: new Uint8Array(kp.publicKey), privateKey: new Uint8Array(kp.privateKey) };
+    this.publicKeyHex = sodium.to_hex(this.keypair.publicKey);
+    this.createdAt = kp.createdAt;
+    this.ready = true;
+    renderKonomi();
+  },
+  async sign(msg) { const s = await getSodium(); return s.to_hex(s.crypto_sign_detached(typeof msg==='string'?s.from_string(msg):msg, this.keypair.privateKey)); },
+  async exportSeed() { const s = await getSodium(); return s.to_hex(this.keypair.privateKey.slice(0,32)); },
+  async importSeed(hex) {
+    const s = await getSodium();
+    const seed = s.from_hex(hex);
+    if (seed.length !== 32) throw new Error('seed must be 32 bytes (64 hex chars)');
+    const kp = s.crypto_sign_seed_keypair(seed);
+    const stored = { publicKey: Array.from(kp.publicKey), privateKey: Array.from(kp.privateKey), createdAt: new Date().toISOString() };
+    await idbSet('konomi-keypair', stored);
+    this.keypair = { publicKey: kp.publicKey, privateKey: kp.privateKey };
+    this.publicKeyHex = s.to_hex(kp.publicKey);
+    this.createdAt = stored.createdAt;
+    renderKonomi();
+  }
+};
+let _sodPromise = null;
+async function getSodium() {
+  if (!_sodPromise) _sodPromise = (async () => {
+    const m = await import('https://esm.run/libsodium-wrappers@0.7.13');
+    const s = m.default || m; await s.ready; return s;
+  })();
+  return _sodPromise;
+}
+
+// ── IndexedDB tiny helper
+const IDB='operator.v1';
+function idbOpen() { return new Promise((res, rej) => { const r = indexedDB.open(IDB, 1); r.onupgradeneeded=()=>r.result.createObjectStore('kv'); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); }
+async function idbGet(k) { const db = await idbOpen(); return new Promise(res=>{ const r=db.transaction('kv','readonly').objectStore('kv').get(k); r.onsuccess=()=>res(r.result||null); r.onerror=()=>res(null); }); }
+async function idbSet(k, v) { const db = await idbOpen(); return new Promise(res=>{ const r=db.transaction('kv','readwrite').objectStore('kv').put(v,k); r.onsuccess=()=>res(true); r.onerror=()=>res(false); }); }
+
+// ── KCC ledger (mirror of KARD pattern · same kcc-signal mesh)
+const KCC = { balance:0, lifetime:0, engagements:0, ledger:[],
+  async load() {
+    const s = await idbGet('kcc-ledger') || { balance:0, lifetime:0, engagements:0, ledger:[] };
+    Object.assign(this, s);
+    renderKcc();
+  },
+  async earn(d, reason) {
+    this.balance += d; this.lifetime += d;
+    if (reason.startsWith('engagement')) this.engagements++;
+    const e = { kind:'earn', delta:d, reason, ts:Date.now(), balance:this.balance };
+    if (KONOMI.ready) e.sig = await KONOMI.sign(JSON.stringify(e));
+    this.ledger.unshift(e);
+    if (this.ledger.length > 500) this.ledger.length = 500;
+    await idbSet('kcc-ledger', { balance:this.balance, lifetime:this.lifetime, engagements:this.engagements, ledger:this.ledger });
+    try { new BroadcastChannel('kcc-signal').postMessage({ type:'kcc:earn', tool:'operator', delta:d, balance:this.balance, issuer:KONOMI.publicKeyHex }); } catch (_) {}
+    renderKcc();
+  }
+};
+
+// ── settings renderers
+function renderKonomi() {
+  const s = document.getElementById('konomiStatus');
+  const p = document.getElementById('konomiPubKey');
+  const c = document.getElementById('konomiCreated');
+  if (s) s.textContent = KONOMI.ready ? '◊ ready' : 'initialising';
+  if (p) p.textContent = KONOMI.publicKeyHex || '—';
+  if (c) c.textContent = KONOMI.createdAt ? new Date(KONOMI.createdAt).toLocaleString() : '—';
+}
+function renderKcc() {
+  ['kccBalance','kccCurrentBal'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = KCC.balance; });
+  const lt = document.getElementById('kccLifetime'); if (lt) lt.textContent = KCC.lifetime;
+  const eng = document.getElementById('kccEngagements'); if (eng) eng.textContent = KCC.engagements;
+}
+async function exportKonomiSeed() {
+  if (!KONOMI.ready) return toast('not ready');
+  const seed = await KONOMI.exportSeed();
+  showModal('◊ your Konomi seed', '<p>Copy this 64-char hex and store it safely. Anyone with this seed can sign as you.</p><div style="font-family:monospace;font-size:12px;background:var(--void);padding:10px;border-radius:4px;word-break:break-all">'+seed+'</div>', () => { navigator.clipboard.writeText(seed); toast('seed copied'); closeModal(); });
+}
+async function importKonomiSeed() {
+  const s = prompt('Paste 64-char hex seed:'); if (!s) return;
+  try { await KONOMI.importSeed(s.trim()); toast('identity restored'); }
+  catch (e) { toast('bad seed · ' + e.message); }
+}
+function copyPubKey() { navigator.clipboard.writeText(KONOMI.publicKeyHex).then(() => toast('public key copied')); }
+function exportKccLedger() {
+  downloadText(JSON.stringify({ pubkey: KONOMI.publicKeyHex, ...KCC }, null, 2), 'operator-kcc.json');
+}
+function saveByok() {
+  localStorage.setItem('operator.byok', JSON.stringify({ provider: document.getElementById('byokProvider').value, key: document.getElementById('byokKey').value }));
+  toast('saved · key stays in your browser');
+}
+
+// ── mesh listener
+const meshSeen = {};
+function startMesh() {
+  try {
+    const bc = new BroadcastChannel('fall-signal');
+    bc.onmessage = (e) => { if (e.data && e.data.tool) { meshSeen[e.data.tool] = Date.now(); renderMesh(); } };
+  } catch (_) {}
+}
+function renderMesh() {
+  const el = document.getElementById('meshList'); if (!el) return;
+  const tools = Object.keys(meshSeen).sort();
+  el.innerHTML = tools.length === 0 ? 'listening…' : tools.map(t => `<div>◊ ${t} · <span style="color:var(--cream-deep)">${new Date(meshSeen[t]).toLocaleTimeString()}</span></div>`).join('');
+}
+
+// ═════════════════════════════════════════════════════════════
+// BOOT
+// ═════════════════════════════════════════════════════════════
+(async function boot() {
+  loadCurrent();
+  refreshAll();
+  startMesh();
+  try { new BroadcastChannel('fall-signal').postMessage({ type:'tool:ready', tool:'operator', ts:Date.now() }); } catch (_) {}
+  try {
+    await KONOMI.init();
+    await KCC.load();
+    if (KCC.lifetime === 0 && KCC.balance === 0) await KCC.earn(3, 'welcome to OPERATOR · initial issuance');
+  } catch (e) { console.warn('Konomi init failed', e); }
+})();
+</script>
+</body>
+</html>
